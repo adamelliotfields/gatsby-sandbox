@@ -1,0 +1,10 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.probe": ["javascript", "javascriptreact", "markdown", "mdx"],
+  "prettier.endOfLine": "lf",
+  "prettier.printWidth": 100,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all"
+}
