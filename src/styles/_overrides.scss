@@ -1,0 +1,147 @@
+// Fonts.
+
+$family-serif: 'Bree Serif', serif;
+$family-sans-serif: 'Raleway', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+  'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+  'Noto Color Emoji';
+$family-primary: $family-serif;
+$body-family: $family-sans-serif;
+$body-size: 18px;
+$subtitle-weight: 300;
+
+// Colors.
+
+$light: hsl(0, 0%, 96%);
+$link: hsl(217, 71%, 53%);
+$border-light: hsl(0, 0%, 93%);
+
+// Spacing.
+
+$spacing-values: (
+  'auto': auto,
+  '0': 0,
+  '1': 0.25rem,
+  '2': 0.5rem,
+  '3': 0.75rem,
+  '4': 1rem,
+  '5': 1.5rem,
+  '6': 3rem,
+);
+
+// Sizing.
+
+$gap: 32px;
+$container-offset: (2 * $gap);
+$desktop: 960px + $container-offset;
+$navbar-height: 3.25rem;
+$footer-height: 4.5rem;
+
+// Border radius.
+
+$radius-large: 6px;
+
+// Media queries.
+
+@mixin until($device) {
+  @media screen and (max-width: $device - 1px) {
+    @content;
+  }
+}
+
+// Animate.css
+
+:root {
+  --animate-duration: 3s;
+  --animate-delay: 1s;
+  --animate-repeat: 1;
+}
+
+// Custom styles.
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $family-primary;
+}
+
+.is-table-row {
+  display: table-row !important;
+}
+
+.is-table-cell {
+  display: table-cell !important;
+}
+
+.has-text-truncated {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button.is-text.has-text-light {
+  &:hover,
+  &.is-hovered,
+  &:focus,
+  &.is-focused,
+  &:active,
+  &.is-active {
+    background-color: transparent;
+    color: $light;
+  }
+}
+
+.card {
+  border-radius: $radius-large;
+
+  // This allows us to put multiple elements in the card header.
+  &-header {
+    flex-direction: column;
+  }
+}
+
+.navbar-item .icon + span {
+  vertical-align: top;
+}
+
+// This pulls up the hero body so it's centered vertically.
+.hero.is-fullheight-with-navbar .hero-body {
+  margin-top: -#{$navbar-height};
+}
+
+// This is a custom class that wraps the post and ensures the footer is on the bottom of the page.
+.section-post {
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+
+  // Containers for posts should have a max-width of 960px for easier reading.
+  // For reference, Medium uses 680px and Casper uses 700px.
+  .container {
+    max-width: $desktop - $container-offset;
+  }
+
+  .card {
+    @include until($desktop) {
+      box-shadow: none !important;
+    }
+
+    &-header {
+      border-bottom: 1px solid $border-light;
+    }
+  }
+
+  .content {
+    font-weight: 500;
+
+    // Ensure markdown <code> links are the <a> color not the <code> color.
+    a code {
+      color: $link;
+    }
+
+    figure figcaption {
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+    }
+  }
+}
